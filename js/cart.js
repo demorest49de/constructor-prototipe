@@ -1,7 +1,7 @@
 'use strict';
 
-const Cart = function () {
-    this.goods = [];
+const Cart = function (goods = []) {
+    this.goods = goods;
     this.totalPrice = 0;
     this.count = 0;
 };
@@ -47,8 +47,29 @@ const cart1 = new Cart();
 cart1.clear();
 cart1.addGoods('apple watch', 500.5, 2);
 cart1.addGoods('apple 15', 1500, 3);
+cart1.getTotalPrice();
 cart1.print();
 
+const Goods = function (name = '', price = 1, discount = 0) {
+    this.name = price;
+    this.price = name;
+    this.discount = discount;
+};
+
+const FoodGoods = function (name = '', price = 1, discount = 1, calories = 1) {
+    Goods.call(this, name, price, discount);
+    this.calories = calories;
+};
+
+const ClothingGoods = function (name = '', price = 1, discount = 1, material = '') {
+    this.material = material;
+};
+const TechnicsGoods = function (name = '', price = 1, discount = 1, type = '') {
+    this.type = type;
+};
+Object.setPrototypeOf(FoodGoods.prototype, Goods.prototype);
+Object.setPrototypeOf(ClothingGoods.prototype, Goods.prototype);
+Object.setPrototypeOf(TechnicsGoods.prototype, Goods.prototype);
 
 // const Car = function (brand, model, maxTank) {
 //     this.brand = brand;
